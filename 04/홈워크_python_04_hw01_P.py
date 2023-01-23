@@ -34,4 +34,15 @@ while idx < len(words) - 1:
     idx += 1
 print(dupliccated_word)
 
+# try except 쓴 버전
+for i in range(len(words)):
+    try:
+        if ((words[i][-1] == words[i+1][0]) and (words[i] not in new)):
+            new.append(words[i])
+        else:
+            print(f'{i+1}번째 사람이 틀렸습니다.')
+
+    except:
+        break
+
     
