@@ -34,10 +34,4 @@ def group_anagrams(words):
 
 
 
-
-    
-
-
-
-
 group_anagrams(['eat','tea','tan','ate','nat','bat'])
