@@ -1,5 +1,3 @@
-# 상훈쓰 풀이
-
 entry_record = ['이싸피', '박장고', '조실습', '이싸피', '조실습', '오디비', '임온실', '조실습', '조실습', '이싸피', '안도둑', '임온실', '최이썬', '오디비', '안도둑', '염자바', '박장고', '조실습',
                 '최이썬', '조실습', '염자바', '박장고', '임온실', '임온실', '이싸피', '임온실', '오디비', '조실습', '염자바', '임온실', '박장고', '최이썬', '안도둑', '염자바', '임온실', '박장고', '이싸피', '안도둑',
                 '임온실', '오디비', '최이썬', '안도둑', '이싸피', '오디비', '안도둑', '이싸피', '박장고', '박장고', '안도둑', '안도둑', '안도둑', '염자바', '최이썬', '오디비', '오디비', '최이썬', '이싸피', '임온실', '안도둑']
@@ -9,26 +7,31 @@ exit_record = ['최이썬', '조실습', '이싸피', '안도둑', '임온실', 
                '염자바', '이싸피', '임온실', '안도둑', '오디비', '안도둑', '오디비', '임온실', '염자바', '임온실', '박장고', '조실습', '이싸피', '최이썬', '최이썬', '오디비', '오디비', '염자바', '오디비', '안도둑', '박장고']
 
 
-from collections import Counter
+# entry_record에 등장한 횟수 등 다 사람마다 기록
+# -> 각각 고유한 사람마다 특정한 value를 가지고 있어야 한다.
+entry_count_dict = {}
 
-count_entry = Counter(entry_record)
-count_exit = Counter(exit_record)
+for name in entry_record:
+    entry_count_dict[name] = entry_count_dict.get(name, 0) + 1
+# print(entry_count_dict)
 
-print('입장 기록 많은 Top3')
-for key, value in count_entry.most_common(3):
-    print(f'{key} {value}회')
+print('입장 기록이 가장 많은 Top3')
+print(sorted(entry_count_dict.items(), key=lambda item: item[1], reverse=True)[:3])
 
-print('출입 기록이 수상한 사람')
+exit_count_dict = {name: 0 for name in set(exit_record)} # 딕셔너리 key값은 중복이기 때문에 하나로 합쳐서 나온다
+# set도 중복 안됨 -> 순회 적게할 수 있다.
 
+for name in exit_record:
+    exit_count_dict[name] += 1
 
-dic = {}
-for key in count_entry :
-    dic[key] = count_entry[key] - count_exit[key]
-    if dic[key] != 0 :
-        if dic[key] < 0 :
-            print(f'{key}는 퇴장 기록이 {-dic[key]}회 더 많아 수상합니다.')
-        elif dic[key] > 0 :
-            print(f'{key}는 입장 기록이 {dic[key]}회 더 많아 수상합니다.')
+# print(exit_count_dict)
 
+for name, count in entry_count_dict.items():
+    
+    diff = count - exit_count_dict[name]
 
-
+    # print(diff)
+    if diff > 0:
+        print(f'{name}의 입장 기록이 {diff}번 더 많습니다.')
+    elif diff < 0:
+        print(f'{name}의 퇴장 기록이 {-diff}번 더 많습니다.')

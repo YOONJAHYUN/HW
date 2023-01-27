@@ -37,6 +37,7 @@ for i in range(len(entry_lst)):
     if entry_lst[i][1] != exit_lst[i][1]:
         stranger.append((entry_lst[i][0], (entry_lst[i][1] - exit_lst[i][1])))
 # 출력형태가 입장기록이 먼저 되어야함으로 그에 맞게 sort한다.
+
 stranger.sort(key=lambda x: x[1], reverse=True)
 # 입장기록과 횟수를 음수 or 양수로 구분해 print한다.
 for i in range(len(stranger)):
