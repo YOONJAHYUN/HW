@@ -5,7 +5,6 @@ class Point:
         self.x = x
         self.y = y
 
-
 class Rectangle:
 
     def __init__(self, p1, p2):
@@ -26,9 +25,6 @@ class Rectangle:
             return True
         else:
             return False
-
-
-
 
 
 # 입력 예시

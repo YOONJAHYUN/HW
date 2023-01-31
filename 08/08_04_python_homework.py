@@ -17,30 +17,56 @@ class Stack:
         self.stack = []
 
     def empty(self):
-        if self.stack == []:
-            return True
-        else:
-            return False
+        # if self.stack == []:
+        #     return True
+        # else:
+        #     return False
+
+
+        # if self.stack:
+        #     return True
+        # else:
+        #     return False
+
+        return not bool(self.stack)
+
+
 
     def top(self):
-        if self.stack == []:
+        if self.stack:
             return None
         else:
             return self.stack[-1]
 
     def pop(self):
-        if self.stack == []:
-            return None
-        else:
-            return self.stack.pop(-1)
+        # if self.stack:
+        #     return None
+        # else:
+        #     return self.stack.pop()
 
-    def push(self):
-        self.stack.append(self)
+        if not self.empty():
+            return self.stack.pop()
+
+    def push(self, n):
+        self.stack.append(n)
 
     def __repr__(self):
-        print(self.stack)
-       
+        # return repr(self.stack)
+        return ''.join(self.stack)      
 
+    def __str__(self): # 프린트하면서 할 때 사용
+        return ''.join(self.stack)
 
+ls = Stack()
+print(ls.empty())
+ls.push(1)
+ls.push(2)
+print(ls)
+print(ls.empty())
+print(ls.top())
+print(ls)
+print(ls.pop())
+print(ls)
+print(ls.empty())
 
         
